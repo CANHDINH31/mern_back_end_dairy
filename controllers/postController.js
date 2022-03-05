@@ -4,8 +4,9 @@ exports.getAllPosts = async (req, res, next) => {
   const { page } = req.params;
   const limit = 5;
   const skip = (page - 1) * limit;
+  const { userId } = req.user;
   try {
-    const posts = await Post.find({ author: { _id: req.cookies.userId } })
+    const posts = await Post.find({ author: { _id: userId } })
       .populate("author", "name _id")
       .select("content createdAt updatedAt")
       .sort({ createdAt: -1 })

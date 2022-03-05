@@ -9,9 +9,7 @@ exports.checkCurrentUser = (req, res, next) => {
     const token = Authorization.replace("Bearer ", "");
     try {
       const { userId } = jwt.verify(token, process.env.APP_SECRET);
-
       req.user = { userId };
-
       next();
     } catch (error) {
       req.user = null;

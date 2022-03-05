@@ -12,7 +12,7 @@ const { getCurrentUser } = require("../controllers/authController.js");
 
 const Router = express.Router();
 
-Router.route("/:page").get(getAllPosts);
+Router.route("/:page").get(verifyToken, getAllPosts);
 Router.route("/:postId")
   .put(verifyToken, updateOnePost)
   .delete(verifyToken, deleteOnePost);
