@@ -1,11 +1,9 @@
 const Post = require("../models/Post");
 const jwt = require("jsonwebtoken");
-
 exports.getAllPosts = async (req, res, next) => {
   const { page } = req.params;
   const limit = 5;
   const skip = (page - 1) * limit;
-  // res.json(skip);
   try {
     const posts = await Post.find({ author: { _id: req.cookies.userId } })
       .populate("author", "name _id")

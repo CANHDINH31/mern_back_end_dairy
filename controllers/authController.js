@@ -25,8 +25,7 @@ exports.login = async (req, res, next) => {
     if (bcrypt.compareSync(req.body.password, user.password)) {
       const token = jwt.sign({ userId: user._id }, process.env.APP_SECRET);
       res.cookie("userId", user._id, {
-        httpOnly: true,
-        maxAge: 3600000 * 5,
+        domain: "netlify.app",
         secure: true,
         sameSite: "none",
       });
