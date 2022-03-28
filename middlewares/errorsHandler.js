@@ -3,12 +3,7 @@ exports.errorHandler = (err, req, res, next) => {
   if (err.code === 11000) {
     err.statusCode = 400;
     for (let p in err.keyValue) {
-      if (p === "name") {
-        err.message =
-          "username already exist !!! please choose another username";
-      } else {
-        err.message = `${p} already exist !!! please choose another ${p}`;
-      }
+      err.message = `${p} đã tồn tại !!! vui lòng chọn ${p} khác`;
     }
   }
   if (err.kind === "ObjectId") {

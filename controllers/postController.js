@@ -13,7 +13,7 @@ exports.getAllPosts = async (req, res, next) => {
       .skip(skip)
       .limit(limit);
     const number = await Post.countDocuments({
-      author: { _id: req.cookies.userId },
+      author: { _id: userId },
     });
     const numberPage = Math.ceil(number / limit);
 
